@@ -237,6 +237,11 @@ class Champ < ApplicationRecord
     kopy
   end
 
+  # double read / to keep
+  def show_groupe_instructeur_details?
+    dossier.procedure.routing_enabled? && dossier.groupe_instructeur.present? && (!dossier.procedure.feature_enabled?(:procedure_routage_api) || !dossier.defaut_groupe_instructeur?)
+  end
+
   private
 
   def champs_for_condition
