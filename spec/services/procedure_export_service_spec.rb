@@ -82,6 +82,7 @@ describe ProcedureExportService do
           "dgfip",
           "pole_emploi",
           "mesri",
+          "routage",
           "text"
         ]
       end
@@ -186,6 +187,7 @@ describe ProcedureExportService do
           "dgfip",
           "pole_emploi",
           "mesri",
+          "routage",
           "text"
         ]
       end
@@ -273,6 +275,7 @@ describe ProcedureExportService do
             "dgfip",
             "pole_emploi",
             "mesri",
+            "routage",
             "text"
           ]
         end

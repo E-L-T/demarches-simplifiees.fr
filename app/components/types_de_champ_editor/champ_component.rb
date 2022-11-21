@@ -68,7 +68,7 @@ class TypesDeChampEditor::ChampComponent < ApplicationComponent
       .to_h do |cat, tdc|
         [
           t(cat, scope: cat_scope),
-          tdc.map { [t(_1, scope: tdc_scope), _1] }
+          tdc.map { [t(_1, scope: tdc_scope), _1] unless _1 == 'routage' }.compact
         ]
       end
   end
