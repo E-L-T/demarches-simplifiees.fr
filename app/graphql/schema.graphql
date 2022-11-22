@@ -2357,6 +2357,11 @@ enum TypeDeChamp {
   rna
 
   """
+  Routage
+  """
+  routage
+
+  """
   SIRET
   """
   siret
