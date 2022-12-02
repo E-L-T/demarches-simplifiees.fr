@@ -27,6 +27,7 @@
 #  last_champ_private_updated_at                      :datetime
 #  last_champ_updated_at                              :datetime
 #  last_commentaire_updated_at                        :datetime
+#  migrated_champ_routage                             :boolean
 #  motivation                                         :text
 #  private_search_terms                               :text
 #  processed_at                                       :datetime

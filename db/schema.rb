@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_12_05_144624) do
+ActiveRecord::Schema.define(version: 2022_12_06_144624) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -361,6 +361,7 @@ ActiveRecord::Schema.define(version: 2022_12_05_144624) do
     t.datetime "last_champ_private_updated_at"
     t.datetime "last_champ_updated_at"
     t.datetime "last_commentaire_updated_at"
+    t.boolean "migrated_champ_routage"
     t.text "motivation"
     t.bigint "parent_dossier_id"
     t.string "private_search_terms"
@@ -653,6 +654,7 @@ ActiveRecord::Schema.define(version: 2022_12_05_144624) do
     t.bigint "procedure_id", null: false
     t.datetime "published_at"
     t.datetime "updated_at", null: false
+    t.boolean "migrated_champ_routage"
     t.index ["attestation_template_id"], name: "index_procedure_revisions_on_attestation_template_id"
     t.index ["dossier_submitted_message_id"], name: "index_procedure_revisions_on_dossier_submitted_message_id"
     t.index ["procedure_id"], name: "index_procedure_revisions_on_procedure_id"
@@ -712,6 +714,7 @@ ActiveRecord::Schema.define(version: 2022_12_05_144624) do
     t.string "web_hook_url"
     t.datetime "whitelisted_at"
     t.bigint "zone_id"
+    t.boolean "migrated_champ_routage"
     t.index ["api_particulier_sources"], name: "index_procedures_on_api_particulier_sources", using: :gin
     t.index ["declarative_with_state"], name: "index_procedures_on_declarative_with_state"
     t.index ["draft_revision_id"], name: "index_procedures_on_draft_revision_id"
