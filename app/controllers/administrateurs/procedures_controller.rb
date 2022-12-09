@@ -125,7 +125,7 @@ module Administrateurs
         current_administrateur.instructeur.assign_to_procedure(@procedure)
         @procedure.draft_revision.add_type_de_champ(
           type_champ: 'routage',
-          libelle: @procedure.routing_criteria_name,
+          libelle: @procedure.routing_libelle,
           mandatory: true
         )
 

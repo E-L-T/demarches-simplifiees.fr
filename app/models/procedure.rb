@@ -60,7 +60,7 @@ class Procedure < ApplicationRecord
 
   include Discard::Model
   self.discard_column = :hidden_at
-  self.ignored_columns = [:direction, :durees_conservation_required, :cerfa_flag, :test_started_at]
+  self.ignored_columns = [:direction, :durees_conservation_required, :cerfa_flag, :test_started_at, :migrated_champ_routage]
 
   default_scope -> { kept }
 
@@ -824,16 +824,10 @@ class Procedure < ApplicationRecord
     self.connection.query(query.to_sql).flatten
   end
 
-  # double read / to remove
-  def has_a_tdc_routage?
-    active_revision.types_de_champ.any?(&:routage?)
-  end
-
   def routing_libelle
     active_revision.types_de_champ.find(&:routage?)&.libelle
   end
 
-  # double read / to remove
   def show_groupe_instructeur_selector?
     routing_enabled? && !feature_enabled?(:procedure_routage_api)
   end

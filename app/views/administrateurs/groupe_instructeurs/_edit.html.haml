@@ -1,15 +1,4 @@
-- if groupes_instructeurs.many? && !procedure.has_a_tdc_routage?
-  .card
-    = form_for procedure,
-      url: { action: :update_routing_criteria_name },
-      html: { class: 'form' } do |f|
-
-      = f.label :routing_criteria_name do
-        = t('.routing.title')
-      %p.notice
-      = f.text_field :routing_criteria_name, required: true
-      = f.submit t('.button.rename'), class: 'button primary send'
-- elsif groupes_instructeurs.many? && procedure.has_a_tdc_routage?
+- if groupes_instructeurs.many?
   .card
     %h2.card-title
       = t('.routing.title')
@@ -26,7 +15,7 @@
       = t('.add_a_group.title')
     - if groupes_instructeurs.many?
       %p.notice
-        = t('.add_a_group.notice', routing_criteria_name: procedure.routing_libelle || procedure.routing_criteria_name)
+        = t('.add_a_group.notice', routing_libelle: procedure.routing_libelle)
     = f.text_field :label, required: true
     = f.submit t('.button.add_group'), class: "button primary send"
 

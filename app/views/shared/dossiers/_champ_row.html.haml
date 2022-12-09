@@ -12,7 +12,7 @@
       - if c.type_champ == TypeDeChamp.type_champs.fetch(:header_section)
         %th.header-section{ colspan: 3 }
           = c.libelle
-        -# double read / to keep
+        -# a deplacer en unless ligne 57 ?
       - elsif !(c.routage? && !c.show_groupe_instructeur_details?)
         %td.libelle{ class: repetition ? 'padded' : '' }
           = "#{c.libelle} :"

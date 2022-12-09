@@ -300,8 +300,7 @@ module Users
         revision: params[:brouillon] ? procedure.draft_revision : procedure.active_revision,
         groupe_instructeur: procedure.defaut_groupe_instructeur_for_new_dossier,
         user: current_user,
-        state: Dossier.states.fetch(:brouillon),
-        migrated_champ_routage: procedure.draft_revision.types_de_champ.any?(&:routage?)
+        state: Dossier.states.fetch(:brouillon)
       )
       dossier.build_default_individual
       dossier.save!
@@ -493,8 +492,7 @@ module Users
       end
 
       if @dossier.groupe_instructeur.nil?
-        # double read
-        errors << "Le champ « #{@dossier.procedure.routing_libelle || @dossier.procedure.routing_criteria_name} » doit être rempli"
+        errors << "Le champ « #{@dossier.procedure.routing_libelle} » doit être rempli"
       end
 
       errors

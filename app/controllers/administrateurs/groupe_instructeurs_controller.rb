@@ -100,9 +100,8 @@ module Administrateurs
       target_group = procedure.groupe_instructeurs.find(params[:target_group])
       reaffecter_bulk_messages(target_group)
       groupe_instructeur.dossiers.find_each do |dossier|
-        dossier.assign_to_groupe_instructeur(target_group, current_administrateur)
-        # double read / condition to remove
-        if (champ_routage = dossier.champs_public.find(&:routage?))
+        ActiveRecord::Base.transaction do
+          dossier.assign_to_groupe_instructeur(target_group, current_administrateur)
           champ_routage.update_column(:value, target_group)
         end
       end
@@ -181,16 +180,6 @@ module Administrateurs
       else
         redirect_to admin_procedure_groupe_instructeurs_path(procedure)
       end
-    end
-
-    # double read / to remove
-    def update_routing_criteria_name
-      if procedure.update(routing_criteria_name: routing_criteria_name)
-        flash[:notice] = "Le libellé est maintenant « #{procedure.routing_criteria_name} »."
-      else
-        flash[:alert] = "Le libellé du routage doit être rempli."
-      end
-      redirect_to admin_procedure_groupe_instructeurs_path(procedure)
     end
 
     def update_instructeurs_self_management_enabled
