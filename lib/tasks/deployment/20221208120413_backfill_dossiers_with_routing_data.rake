@@ -6,11 +6,10 @@ namespace :after_party do
     progress = ProgressReport.new(Dossier.where(migrated_champ_routage: nil).count)
     ProcedureRevision.where(migrated_champ_routage: nil).find_each do |revision|
       revision_type_de_champ_id = ProcedureRevisionTypeDeChamp
-          .joins(:type_de_champ)
-          .where(revision:, types_de_champ: { type_champ: 'routage' })
-          .limit(1)
-          .pluck(:type_de_champ_id)
-          .first
+        .joins(:type_de_champ)
+        .where(revision:, types_de_champ: { type_champ: 'routage' })
+        .limit(1)
+        .pick(:type_de_champ_id)
 
       next if revision_type_de_champ_id.nil?
 

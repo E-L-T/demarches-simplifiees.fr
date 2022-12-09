@@ -10,7 +10,7 @@ namespace :after_party do
 
     progress = ProgressReport.new(procedures.count)
     procedures.find_each do |procedure|
-      if ProcedureRevisionTypeDeChamp.joins(:type_de_champ).where(revision_id: procedure.draft_revision_id, types_de_champ: { type_champ: 'routage' }).exists?
+      if ProcedureRevisionTypeDeChamp.joins(:type_de_champ).exists?(revision_id: procedure.draft_revision_id, types_de_champ: { type_champ: 'routage' })
         procedure.update_column(:migrated_champ_routage, true)
       else
         procedure.transaction do
