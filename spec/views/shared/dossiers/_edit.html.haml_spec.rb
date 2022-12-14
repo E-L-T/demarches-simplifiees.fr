@@ -131,15 +131,13 @@ describe 'shared/dossiers/edit.html.haml', type: :view do
 
   context 'with a routed procedure' do
     let(:procedure) do
-      create(:procedure,
-        :routee,
-        routing_criteria_name: 'departement')
+      create(:procedure, :routee)
     end
     let(:dossier) { create(:dossier, procedure: procedure) }
     let(:champs) { [] }
 
     it 'renders the routing criteria name and its value' do
-      expect(subject).to have_field(procedure.routing_criteria_name)
+      expect(subject).to have_field(procedure.routing_libelle)
     end
 
     context 'when groupe instructeur is selected' do
@@ -148,7 +146,7 @@ describe 'shared/dossiers/edit.html.haml', type: :view do
       end
 
       it 'renders the routing criteria name and its value' do
-        expect(subject).to have_field(procedure.routing_criteria_name)
+        expect(subject).to have_field(procedure.routing_libelle)
         expect(subject).to include(dossier.groupe_instructeur.label)
       end
     end

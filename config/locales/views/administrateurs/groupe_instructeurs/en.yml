@@ -42,7 +42,7 @@ en:
           move_folders_confirmation: Reassign folders to another group so you can delete it
         add_a_group:
           title: Add a group
-          notice: This group will be a choice from the list "%{routing_criteria_name}"
+          notice: This group will be a choice from the list "%{routing_libelle}"
         csv_import:
           title: CSV Import
           notice_1: The csv file must have 2 columns (Group, Email) and be separated by commas. The import does not overwrite existing groups and instructors.

@@ -55,15 +55,12 @@ describe 'shared/dossiers/champs.html.haml', type: :view do
 
   context "with a routed procedure" do
     let(:procedure) do
-      create(:procedure,
-        :routee,
-        routing_criteria_name: 'departement')
+      create(:procedure, :routee)
     end
     let(:dossier) { create(:dossier, :en_construction, procedure: procedure) }
-    let(:champs) { [] }
 
     it "renders the routing criteria name and its value" do
-      expect(subject).to include(procedure.routing_criteria_name)
+      expect(subject).to include(procedure.routing_libelle)
       expect(subject).to include(dossier.groupe_instructeur.label)
     end
 

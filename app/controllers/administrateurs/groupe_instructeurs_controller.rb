@@ -279,10 +279,6 @@ module Administrateurs
         .order(:email)
     end
 
-    def routing_criteria_name
-      params[:procedure][:routing_criteria_name]
-    end
-
     def available_instructeur_emails
       all = current_administrateur.instructeurs.map(&:email)
       assigned = groupe_instructeur.instructeurs.map(&:email)
