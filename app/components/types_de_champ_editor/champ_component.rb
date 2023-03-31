@@ -11,6 +11,10 @@ class TypesDeChampEditor::ChampComponent < ApplicationComponent
 
   delegate :type_de_champ, :revision, :procedure, to: :coordinate
 
+  def used_by_routing_rules?
+    @coordinate.stable_id.in?(procedure.stable_ids_used_by_routing_rules)
+  end
+
   def can_be_mandatory?
     type_de_champ.public? && !type_de_champ.non_fillable?
   end
